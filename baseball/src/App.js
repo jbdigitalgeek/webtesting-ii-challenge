@@ -12,6 +12,7 @@ class App extends Component {
       <div className="App">
         <h2>Balls: {this.state.balls}</h2>
         <h2>Strikes: {this.state.strikes}</h2>
+        <h2>Hits: {this.state.hits}</h2>
         <button onClick={this.handleStrikes}>Strike</button>
         <button onClick={this.handleFouls}>Foul</button>
         <button onClick={this.handleBalls}>Ball</button>
@@ -40,7 +41,11 @@ class App extends Component {
   handleFouls = () => {
 
   };
-  handleStrikes = () => {
+  handleStrikes = e => {
+    e.preventDefault();
+    if (this.state.strikes < 2) {
+      
+    }
 
   };
 }
