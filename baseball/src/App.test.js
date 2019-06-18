@@ -15,12 +15,27 @@ describe("<App />", () => {
   });
   it('displays strikes, balls, and hits', () => {
     const { getByText } = render(<App />);
-    getByText(/balls/i)
-    getByText(/strikes/i)
+    getByText(/Balls/i)
+    getByText(/Strikes/i)
     getByText(/hits/i)
-
-  })
-  // describe('Strike Button', () => {
-  //   it('adds a strike up to 2, then resets all')
+  });
+  // describe('Strike button', () => {
+  //   it('adds a strike to the counter', () => {
+  //     const { getByText, queryByText } = render(<App />);
+  //     const button = getByText(/strikes/i);
+  //     fireEvent.click(button);
+  //     expect(queryByText(/strikes/i)).toBe(<h2>Strikes: 1</h2>);
+  //   })
+   
   // })
+  describe('Ball button', () => {
+    it('adds a ball to the counter', () => {
+      const { getByText, queryByText } = render(<App />);
+      const button = getByText(/Add Ball/i);
+      fireEvent.click(button);
+      expect(queryByText(/Balls/i).textContent).toBe('Balls: 1');
+    })
+   
+  })
+  
 });

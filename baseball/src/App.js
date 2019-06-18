@@ -3,20 +3,20 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    balls: 0,
-    strikes: 0,
+    calledBalls: 0,
+    calledStrikes: 0,
     hits: 0
   };
   render() {
     return (
       <div className="App">
-        <h2>Balls: {this.state.balls}</h2>
-        <h2>Strikes: {this.state.strikes}</h2>
+        <h2>Balls: {this.state.calledBalls}</h2>
+        <h2>Strikes: {this.state.calledStrikes}</h2>
         <h2>Hits: {this.state.hits}</h2>
-        <button onClick={this.handleStrikes}>Strike</button>
-        <button onClick={this.handleFouls}>Foul</button>
-        <button onClick={this.handleBalls}>Ball</button>
-        <button onClick={this.handleHits}>Hit</button>
+        <button onClick={this.handleStrikes}>Add Strike</button>
+        <button onClick={this.handleFouls}>Add Foul</button>
+        <button onClick={this.handleBalls}>Add Ball</button>
+        <button onClick={this.handleHits}>Add Hit</button>
 
       </div>
     );
@@ -25,15 +25,15 @@ class App extends Component {
   }
   handleBalls = e => {
     e.preventDefault();
-    if (this.state.balls < 3) {
-      const ballCount = this.state.balls;
+    if (this.state.calledBalls < 3) {
+      const ballCount = this.state.calledBalls;
       this.setState({
-        balls: ballCount + 1
+        calledBalls: ballCount + 1
       });
-    } else if (this.state.balls === 3) {
+    } else if (this.state.calledBalls === 3) {
       const ballCount = 0;
       this.setState({
-        balls: ballCount,
+        calledBalls: ballCount,
         strikes: 0
       });
     }
@@ -43,7 +43,7 @@ class App extends Component {
   };
   handleStrikes = e => {
     e.preventDefault();
-    if (this.state.strikes < 2) {
+    if (this.state.calledStrikes < 2) {
       
     }
 
