@@ -34,8 +34,17 @@ describe("<App />", () => {
       const button = getByText(/Add Ball/i);
       fireEvent.click(button);
       expect(queryByText(/Balls/i).textContent).toBe('Balls: 1');
-    })
+      fireEvent.click(button);
+      expect(queryByText(/Balls/i).textContent).toBe('Balls: 2');
+      fireEvent.click(button);
+      expect(queryByText(/Balls/i).textContent).toBe('Balls: 3');
+      // fireEvent.click(button);
+      // expect(queryByText(/Balls/i).textContent).toBe('Balls: 0');
+
+    });
    
-  })
+  });
+
+
   
 });

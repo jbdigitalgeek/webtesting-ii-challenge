@@ -23,6 +23,15 @@ class App extends Component {
 
    
   }
+  handleHits = e => {
+    e.preventDefault();
+      this.setState({
+        calledStrikes: 0,
+        calledBalls: 0,
+        hits: this.state.hits + 1
+    });
+  };
+
   handleBalls = e => {
     e.preventDefault();
     if (this.state.calledBalls < 3) {
@@ -30,7 +39,7 @@ class App extends Component {
       this.setState({
         calledBalls: ballCount + 1
       });
-    } else if (this.state.calledBalls === 3) {
+    } else {
       const ballCount = 0;
       this.setState({
         calledBalls: ballCount,
@@ -38,14 +47,29 @@ class App extends Component {
       });
     }
   }
-  handleFouls = () => {
-
+  handleFouls = e => {
+    e.preventDefault();
+    if (this.state.calledStrikes < 2) {
+      const foulBall = this.state.calledStrikes;
+      this.setState({
+        calledStrikes: foulBall + 1
+      });
+    };
   };
   handleStrikes = e => {
     e.preventDefault();
     if (this.state.calledStrikes < 2) {
-      
-    }
+      const strikeCount = this.state.calledStrikes;
+      this.setState({
+        calledStrikes: strikeCount + 1
+      })
+    } else {
+      const strikeCount = 0;
+      this.setState({
+        calledStrikes: strikeCount,
+        calledBalls: 0
+      })
+    };
 
   };
 }
