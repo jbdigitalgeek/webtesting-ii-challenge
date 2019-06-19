@@ -44,7 +44,9 @@ describe("<App />", () => {
     });
    
   });
+  // describe('Strike button', () => {
 
+  // })
 
   
 });
