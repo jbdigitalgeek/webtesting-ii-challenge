@@ -7,7 +7,9 @@ class App extends Component {
   state = {
     balls: 0,
     strikes: 0,
-    hits: 0
+    hits: 0,
+    outs: 0,
+    inning: 1
   };
   render() {
     return (
@@ -16,16 +18,20 @@ class App extends Component {
           balls={this.state.balls}
           strikes={this.state.strikes}
           hits={this.state.hits}
+          outs={this.state.outs}
+          innings={this.state.inning}
         />
         <Dashboard
-          hit ={this.handleHits}
-          strike={this.handleStrikes} 
+          hit={this.handleHits}
+          strike={this.handleStrikes}
           ball={this.handleBalls}
-          foul={this.handleFouls} 
-          />
+          foul={this.handleFouls}
+          out={this.handleOuts}
+        />
       </div>
     );
   }
+
   handleHits = e => {
     e.preventDefault();
     this.setState({
@@ -70,10 +76,52 @@ class App extends Component {
       const strikeCount = 0;
       this.setState({
         strikes: strikeCount,
-        calledBalls: 0
+        balls: 0,
+        outs: function outHandler() {
+          if (this.state.outs < 2) {
+            const outCount = this.state.outs;
+            this.setState({
+              outs: outCount + 1
+            });
+          } else {
+            const outCount = 0;
+            const inningHalf = this.state.inning;
+            this.setState({
+              balls: 0,
+              strikes: 0,
+              hits: 0,
+              outs: outCount,
+              inning: inningHalf + 1
+            });
+          }
+        }
+            
+      })
+      
+    }
+
+  };
+  
+  handleOuts = e => {
+    e.preventDefault();
+    if (this.state.outs < 2) {
+      const outCount = this.state.outs;
+      this.setState({
+        outs: outCount + 1
+      });
+    } else {
+      const outCount = 0;
+      const inningHalf = this.state.inning;
+      this.setState({
+        balls: 0,
+        strikes: 0,
+        hits: 0,
+        outs: outCount,
+        inning: inningHalf + 1
       });
     }
   };
+
 }
 
 export default App;
